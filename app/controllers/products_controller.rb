@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
 
   def new
+    @product = Product.new
   end
 
   def index
@@ -10,6 +11,12 @@ class ProductsController < ApplicationController
   end
 
   def create
+    @product = Product.new(product_params)
+    if @product.save
+      redirect_to products_path
+    else
+      redirect_to new_product_path
+    end
   end
 
   def show
@@ -25,4 +32,7 @@ class ProductsController < ApplicationController
   def destroy
   end
 
+  def product_params
+    params.require(:product).permit(:name, :description, :price_in_cents)
+  end 
 end
