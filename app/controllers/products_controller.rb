@@ -19,6 +19,8 @@ class ProductsController < ApplicationController
       render new_product_path
     end
 
+    flash[:notice] = "You have successfully created a new product!"
+
   end
 
   def show
@@ -44,12 +46,17 @@ class ProductsController < ApplicationController
       render :edit
     end
 
+    flash[:notice] = "Product successfully updated! "
+
   end
 
   def destroy
       @product = Product.find(params[:id])
       @product.destroy
       redirect_to products_path
+
+      flash[:notice] = "Product has been successfully deleted!"
+
   end
 
   private
