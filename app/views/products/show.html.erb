@@ -11,3 +11,5 @@
   <p><%= review.comment %></p>
   <p><%= review.created_at %></p>
 <% end %>
+
+<%= render 'new_review_form', product: @product, review: @review %>
