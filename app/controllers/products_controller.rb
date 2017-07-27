@@ -6,7 +6,6 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all
-
     # render 'index'
   end
 
@@ -23,8 +22,9 @@ class ProductsController < ApplicationController
 
   end
 
-  def show
+  def show 
     @product = Product.find(params[:id])
+    @reviews = Review.where(product_id: @product.id)
   end
 
   def edit
