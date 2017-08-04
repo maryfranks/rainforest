@@ -25,7 +25,6 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    # byebug
     @review = Review.find(params[:id])
     product_id = params[:product_id]
     @product = Product.find(product_id)
@@ -38,6 +37,12 @@ class ReviewsController < ApplicationController
       redirect_to product_path(@product.id)
     else
       render 'products/show'
+    end
+
+    def destroy
+      @review = Review.find(params[:id])
+      @review.destroy
+      redirect_to product_path
     end
   end
 end
